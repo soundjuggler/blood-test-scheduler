@@ -202,6 +202,12 @@ public class bloodGUI extends javax.swing.JFrame {
         //CLEAR  TEXT
         displayTA.setText("");
         
+        //CHECK IF THE LIST IS EMPTY
+        if (patientList.isEmpty()) {
+            displayTA.setText("List of patients is empty");
+            return;
+        }
+        
         //TO DISPLAY ALL PATIENTS
         int i =1;
         for(Patient patient : patientList) {
@@ -214,6 +220,12 @@ public class bloodGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         //CLEAR  TEXT
         displayTA.setText("");
+        
+        // CHECK IF THE PRIORITY QUEUE IS EMPTY
+        if (priorityQueue.isEmpty()) {
+            displayTA.setText("Priority Queue is empty");
+            return;
+        }
         
         //DISPLAY THE NEXT PERSON IN THE PRIORITY QUEUE
         Patient nextPatient = priorityQueue.poll(); //POLL METHOD TO GRAB AND REMOVE THE TOP OF THE QUEUE THEN PRINTS BELOW
