@@ -8,14 +8,15 @@ package bloodtestscheduler;
  *
  * @author dell 
  */
-//defining Patient data values, name, age, priority, GP< & WEATHER THERE FROM A HOSPITAL
+//DEFINGING PATIENT DATA VARIABLES, name, age, priority, GP & WEATHER THERE FROM A HOSPITAL
 public class Patient {
     private String name;
-    private int age; 
+    private int age; //AGE IS ONLY USED SO THAT I CAN SORT IT IN A PRIORITY QUEUE
     private String gp;
     private String priority;
     private String fromHospital;
 
+    //CONSTRUCTOR
     public Patient(String name, int age, String gp, String priority, String fromHospital) {
         this.name = name;
         this.age = age;
@@ -24,6 +25,7 @@ public class Patient {
         this.fromHospital = fromHospital;
     }
 
+    //GETTERS AND SETTERS FOR THE VARIABLES
     public String getName() {
         return name;
     }
@@ -64,6 +66,8 @@ public class Patient {
         this.fromHospital = fromHospital;
     }
     
+    
+    //TOSTRING TO PRINT THE DETAILS UNSORTED IF DESIRED
     @Override
     public String toString() {
         return "Name: " +name+

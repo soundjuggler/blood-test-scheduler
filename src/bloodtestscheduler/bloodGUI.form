@@ -50,6 +50,7 @@
                               </Group>
                           </Group>
                           <Component id="displayBTN" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="patientPriorityBTN" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
                   </Group>
@@ -87,9 +88,11 @@
               <Component id="hospitalBTN" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="submitBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="displayBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="40" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="patientPriorityBTN" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="140" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
@@ -147,6 +150,22 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitBTNActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JButton" name="displayBTN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Display Unsorted Full List"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayBTNActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="patientPriorityBTN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Display Patient Priority"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="patientPriorityBTNActionPerformed"/>
+      </Events>
+    </Component>
     <Component class="javax.swing.JComboBox" name="priorityJBOX">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -180,13 +199,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="displayBTN">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Display Unsorted Full List"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayBTNActionPerformed"/>
-      </Events>
-    </Component>
   </SubComponents>
 </Form>

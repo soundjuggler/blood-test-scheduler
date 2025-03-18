@@ -5,6 +5,7 @@
 package bloodtestscheduler;
 
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 /**
  *
@@ -14,6 +15,7 @@ public class bloodGUI extends javax.swing.JFrame {
 
     // DATA STRUCTURES
     private LinkedList<Patient> patientList = new LinkedList<>();
+    private PriorityQueue<Patient> priorityQueue = new PriorityQueue<>();
     
     /**
      * Creates new form bloodGUI
@@ -41,10 +43,11 @@ public class bloodGUI extends javax.swing.JFrame {
         ageTF = new javax.swing.JTextField();
         hospitalBTN = new javax.swing.JCheckBox();
         submitBTN = new javax.swing.JButton();
+        displayBTN = new javax.swing.JButton();
+        patientPriorityBTN = new javax.swing.JButton();
         priorityJBOX = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         displayTA = new javax.swing.JTextArea();
-        displayBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +77,20 @@ public class bloodGUI extends javax.swing.JFrame {
             }
         });
 
+        displayBTN.setText("Display Unsorted Full List");
+        displayBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayBTNActionPerformed(evt);
+            }
+        });
+
+        patientPriorityBTN.setText("Display Patient Priority");
+        patientPriorityBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientPriorityBTNActionPerformed(evt);
+            }
+        });
+
         priorityJBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Urgent", "Medium", "Low" }));
         priorityJBOX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,13 +101,6 @@ public class bloodGUI extends javax.swing.JFrame {
         displayTA.setColumns(20);
         displayTA.setRows(5);
         jScrollPane1.setViewportView(displayTA);
-
-        displayBTN.setText("Display Unsorted Full List");
-        displayBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                displayBTNActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,7 +128,8 @@ public class bloodGUI extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(nameTF)
                                         .addComponent(ageTF, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))))
-                            .addComponent(displayBTN))
+                            .addComponent(displayBTN)
+                            .addComponent(patientPriorityBTN))
                         .addGap(0, 17, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -147,9 +158,11 @@ public class bloodGUI extends javax.swing.JFrame {
                 .addComponent(hospitalBTN)
                 .addGap(18, 18, 18)
                 .addComponent(submitBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(patientPriorityBTN)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -176,9 +189,10 @@ public class bloodGUI extends javax.swing.JFrame {
         String priority = (String) priorityJBOX.getSelectedItem();
         String fromHospital = hospitalBTN.isSelected() ? "Yes" : "No";
         
-        //NEED TO CREATE A NEW PATIENT AND ADD THEM TO THE LINKEDLIST
+        //NEED TO CREATE A NEW PATIENT AND ADD THEM TO THE LINKEDLIST AND PRIORITY QUEUE
         Patient patient = new Patient(name, age, gp, priority, fromHospital);
-        patientList.add(patient);
+        patientList.add(patient); //ADD TO THE PATIENTLIST LINKEDLIST
+//        priorityQueue.add(patient); //ADD TO THE PRIORITYQUEUE
         
         //CLEAR INPUTS
         nameTF.setText("");
@@ -201,6 +215,17 @@ public class bloodGUI extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_displayBTNActionPerformed
+
+    private void patientPriorityBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientPriorityBTNActionPerformed
+        // TODO add your handling code here:
+        //CLEAR  TEXT
+        displayTA.setText("");
+        
+        //DISPLAY THE NEXT PERSON IN THE PRIORITY QUEUE
+        Patient nextPatient = priorityQueue.poll();
+        displayTA.setText("Next person in the Queue:\n" +nextPatient.toString());
+        
+    }//GEN-LAST:event_patientPriorityBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,6 +273,7 @@ public class bloodGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLBL;
     private javax.swing.JTextField nameTF;
+    private javax.swing.JButton patientPriorityBTN;
     private javax.swing.JComboBox<String> priorityJBOX;
     private javax.swing.JLabel priorityLBL;
     private javax.swing.JButton submitBTN;
