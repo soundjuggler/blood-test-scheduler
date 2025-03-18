@@ -30,12 +30,10 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="titleLBL" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="hospitalBTN" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="submitBTN" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="displayBTN" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="nameLBL" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ageLBL" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="gpnameLBL" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="priorityLBL" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -43,16 +41,17 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="priorityJBOX" min="-2" max="-2" attributes="0"/>
                                   <Component id="gpnameTF" min="-2" pref="153" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="nameTF" max="32767" attributes="0"/>
-                                      <Component id="ageTF" alignment="0" pref="153" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="nameTF" min="-2" pref="153" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="displayBTN" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="hospitalBTN" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="submitBTN" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="patientPriorityBTN" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -71,28 +70,24 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ageLBL" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ageTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="gpnameLBL" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="gpnameTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="gpnameLBL" min="-2" max="-2" attributes="0"/>
-                  <Component id="gpnameTF" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="priorityLBL" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="priorityJBOX" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="hospitalBTN" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="submitBTN" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="priorityLBL" min="-2" max="-2" attributes="0"/>
-                  <Component id="priorityJBOX" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="hospitalBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="submitBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="displayBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="patientPriorityBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="78" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="140" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
@@ -123,19 +118,12 @@
         <Property name="text" type="java.lang.String" value="Patient Priority:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="ageLBL">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Patient Age:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="nameTF">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTFActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="gpnameTF">
-    </Component>
-    <Component class="javax.swing.JTextField" name="ageTF">
     </Component>
     <Component class="javax.swing.JCheckBox" name="hospitalBTN">
       <Properties>

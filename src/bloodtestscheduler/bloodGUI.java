@@ -14,8 +14,8 @@ import java.util.PriorityQueue;
 public class bloodGUI extends javax.swing.JFrame {
 
     // DATA STRUCTURES
-    private LinkedList<Patient> patientList = new LinkedList<>();
-    private PriorityQueue<Patient> priorityQueue = new PriorityQueue<>();
+    private LinkedList<Patient> patientList = new LinkedList<>(); //DELCARE LINKEDLIST
+    private PriorityQueue<Patient> priorityQueue = new PriorityQueue<>(); //DECLARE PRIORITYQUEUE
     
     /**
      * Creates new form bloodGUI
@@ -37,10 +37,8 @@ public class bloodGUI extends javax.swing.JFrame {
         nameLBL = new javax.swing.JLabel();
         gpnameLBL = new javax.swing.JLabel();
         priorityLBL = new javax.swing.JLabel();
-        ageLBL = new javax.swing.JLabel();
         nameTF = new javax.swing.JTextField();
         gpnameTF = new javax.swing.JTextField();
-        ageTF = new javax.swing.JTextField();
         hospitalBTN = new javax.swing.JCheckBox();
         submitBTN = new javax.swing.JButton();
         displayBTN = new javax.swing.JButton();
@@ -59,8 +57,6 @@ public class bloodGUI extends javax.swing.JFrame {
         gpnameLBL.setText("Patient's GP Name:");
 
         priorityLBL.setText("Patient Priority:");
-
-        ageLBL.setText("Patient Age:");
 
         nameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,24 +109,23 @@ public class bloodGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titleLBL)
-                            .addComponent(hospitalBTN)
-                            .addComponent(submitBTN)
+                            .addComponent(displayBTN)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nameLBL)
-                                    .addComponent(ageLBL)
                                     .addComponent(gpnameLBL)
                                     .addComponent(priorityLBL))
                                 .addGap(32, 32, 32)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(priorityJBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(gpnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(nameTF)
-                                        .addComponent(ageTF, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))))
-                            .addComponent(displayBTN)
+                                    .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(hospitalBTN)
+                                .addGap(24, 24, 24)
+                                .addComponent(submitBTN))
                             .addComponent(patientPriorityBTN))
-                        .addGap(0, 17, Short.MAX_VALUE)))
+                        .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -144,25 +139,21 @@ public class bloodGUI extends javax.swing.JFrame {
                     .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ageLBL)
-                    .addComponent(ageTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gpnameLBL)
                     .addComponent(gpnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(priorityLBL)
                     .addComponent(priorityJBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hospitalBTN)
+                    .addComponent(submitBTN))
                 .addGap(18, 18, 18)
-                .addComponent(hospitalBTN)
-                .addGap(18, 18, 18)
-                .addComponent(submitBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(patientPriorityBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -184,25 +175,28 @@ public class bloodGUI extends javax.swing.JFrame {
         
         //GETTING INPUT VALUES
         String name = nameTF.getText();
-        int age = Integer.parseInt(ageTF.getText()); //HAVE TO PARSE INT TO STRING
         String gp = gpnameTF.getText();
         String priority = (String) priorityJBOX.getSelectedItem();
         String fromHospital = hospitalBTN.isSelected() ? "Yes" : "No";
         
         //NEED TO CREATE A NEW PATIENT AND ADD THEM TO THE LINKEDLIST AND PRIORITY QUEUE
-        Patient patient = new Patient(name, age, gp, priority, fromHospital);
+        Patient patient = new Patient(name, gp, priority, fromHospital);
         patientList.add(patient); //ADD TO THE PATIENTLIST LINKEDLIST
-//        priorityQueue.add(patient); //ADD TO THE PRIORITYQUEUE
+        addToPriorityQueue(patient); //ADD TO THE PRIORITYQUEUE, CANT DO THE SAME AS THE ABOVE ADD HAVE TO MAKE A FULL METHOD JUST TO ADD???
         
         //CLEAR INPUTS
         nameTF.setText("");
-        ageTF.setText("");
         gpnameTF.setText("");
         priorityJBOX.setSelectedIndex(0);
         hospitalBTN.setSelected(false);
         
     }//GEN-LAST:event_submitBTNActionPerformed
 
+    //HAVE TO MAKE A NEW METHOD TO ADD USERS TO PATIENTQUEUE UNLIKE LINKEDLIST
+    private void addToPriorityQueue(Patient patient) {
+        priorityQueue.add(patient);
+    }
+    
     private void displayBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBTNActionPerformed
         // TODO add your handling code here:
         //CLEAR  TEXT
@@ -222,8 +216,8 @@ public class bloodGUI extends javax.swing.JFrame {
         displayTA.setText("");
         
         //DISPLAY THE NEXT PERSON IN THE PRIORITY QUEUE
-        Patient nextPatient = priorityQueue.poll();
-        displayTA.setText("Next person in the Queue:\n" +nextPatient.toString());
+        Patient nextPatient = priorityQueue.poll(); //POLL METHOD TO GRAB AND REMOVE THE TOP OF THE QUEUE THEN PRINTS BELOW
+        displayTA.setText("Next person in the queue" +nextPatient.toString());
         
     }//GEN-LAST:event_patientPriorityBTNActionPerformed
 
@@ -263,8 +257,6 @@ public class bloodGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ageLBL;
-    private javax.swing.JTextField ageTF;
     private javax.swing.JButton displayBTN;
     private javax.swing.JTextArea displayTA;
     private javax.swing.JLabel gpnameLBL;

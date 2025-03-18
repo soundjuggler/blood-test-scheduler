@@ -8,18 +8,20 @@ package bloodtestscheduler;
  *
  * @author dell 
  */
-//DEFINGING PATIENT DATA VARIABLES, name, age, priority, GP & WEATHER THERE FROM A HOSPITAL
-public class Patient {
+
+//NO LONGER NEED AGE VARIABLE AS THE PRIORTY QUEUE WILL BE SORTED BY THE PRIORTY
+//DEFINGING PATIENT DATA VARIABLES, name, priority, GP & WEATHER THERE FROM A HOSPITAL
+//IMPLEMENTS COMPARABLE TO MAKE THE ORDERING PROCESS EASIER FOR THE PATIENT OBJECTS
+//NO NEED TO IMPORT IT AS WERE ONLY DOING ONE CHECK
+public class Patient implements Comparable<Patient> {
     private String name;
-    private int age; //AGE IS ONLY USED SO THAT I CAN SORT IT IN A PRIORITY QUEUE
     private String gp;
     private String priority;
     private String fromHospital;
 
     //CONSTRUCTOR
-    public Patient(String name, int age, String gp, String priority, String fromHospital) {
+    public Patient(String name, String gp, String priority, String fromHospital) {
         this.name = name;
-        this.age = age;
         this.gp = gp;
         this.priority = priority;
         this.fromHospital = fromHospital;
@@ -34,13 +36,6 @@ public class Patient {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public String getPriority() {
         return priority;
@@ -71,12 +66,29 @@ public class Patient {
     @Override
     public String toString() {
         return "Name: " +name+
-               ", Age: " +age+
                ", GP: " +gp+
                ", Priority: " +priority+
                ", From Hospital: " +fromHospital;
     }
     
+    @Override
+    public int compareTo(Patient other) {
+        // Priority order: Urgent > Medium > Low
+        return Integer.compare(getPriorityLevel(other.priority), getPriorityLevel(this.priority));
+    }
+    
+    private int getPriorityLevel(String priority) {
+        switch(priority) {
+            case "Urgent":
+                return 3;
+            case "Medium":
+                return 2;
+            case "Low":
+                return 1;
+            default:
+                return 0;
+        }
+    }
     
     
 }
