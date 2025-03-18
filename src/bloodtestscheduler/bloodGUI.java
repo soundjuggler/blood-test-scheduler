@@ -6,6 +6,7 @@ package bloodtestscheduler;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 /**
  *
@@ -16,6 +17,7 @@ public class bloodGUI extends javax.swing.JFrame {
     // DATA STRUCTURES
     private LinkedList<Patient> patientList = new LinkedList<>(); //DELCARE LINKEDLIST
     private PriorityQueue<Patient> priorityQueue = new PriorityQueue<>(); //DECLARE PRIORITYQUEUE
+    private Stack<Patient> noShow = new Stack<>(); //DELCARE STACK
     
     /**
      * Creates new form bloodGUI
@@ -43,6 +45,8 @@ public class bloodGUI extends javax.swing.JFrame {
         submitBTN = new javax.swing.JButton();
         displayBTN = new javax.swing.JButton();
         patientPriorityBTN = new javax.swing.JButton();
+        noShowListBTN = new javax.swing.JButton();
+        noShowBTN = new javax.swing.JButton();
         priorityJBOX = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         displayTA = new javax.swing.JTextArea();
@@ -87,6 +91,20 @@ public class bloodGUI extends javax.swing.JFrame {
             }
         });
 
+        noShowListBTN.setText("Display No Show Patients");
+        noShowListBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noShowListBTNActionPerformed(evt);
+            }
+        });
+
+        noShowBTN.setText("No Show");
+        noShowBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noShowBTNActionPerformed(evt);
+            }
+        });
+
         priorityJBOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Urgent", "Medium", "Low" }));
         priorityJBOX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +127,6 @@ public class bloodGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titleLBL)
-                            .addComponent(displayBTN)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nameLBL)
@@ -120,12 +137,18 @@ public class bloodGUI extends javax.swing.JFrame {
                                     .addComponent(priorityJBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(gpnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(hospitalBTN)
-                                .addGap(24, 24, 24)
-                                .addComponent(submitBTN))
-                            .addComponent(patientPriorityBTN))
-                        .addGap(0, 10, Short.MAX_VALUE)))
+                            .addComponent(patientPriorityBTN)
+                            .addComponent(noShowListBTN)
+                            .addComponent(displayBTN)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(hospitalBTN)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(submitBTN))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(219, 219, 219)
+                                    .addComponent(noShowBTN))))
+                        .addGap(0, 11, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -150,10 +173,14 @@ public class bloodGUI extends javax.swing.JFrame {
                     .addComponent(hospitalBTN)
                     .addComponent(submitBTN))
                 .addGap(18, 18, 18)
+                .addComponent(noShowBTN)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(displayBTN)
                 .addGap(18, 18, 18)
                 .addComponent(patientPriorityBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(noShowListBTN)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -221,7 +248,7 @@ public class bloodGUI extends javax.swing.JFrame {
         //CLEAR  TEXT
         displayTA.setText("");
         
-        // CHECK IF THE PRIORITY QUEUE IS EMPTY
+        //CHECK IF THE PRIORITY QUEUE IS EMPTY
         if (priorityQueue.isEmpty()) {
             displayTA.setText("Priority Queue is empty");
             return;
@@ -229,10 +256,25 @@ public class bloodGUI extends javax.swing.JFrame {
         
         //DISPLAY THE NEXT PERSON IN THE PRIORITY QUEUE
         Patient nextPatient = priorityQueue.poll(); //POLL METHOD TO GRAB AND REMOVE THE TOP OF THE QUEUE THEN PRINTS BELOW
-        displayTA.setText("Next person in the queue" +nextPatient.toString());
-        
+        displayTA.setText("Next person in the queue : " +nextPatient.toString()); //MAYBE TRY AN ATTEMPT TO HAVE JUST THE NAME INSTEAD OF ALL DETAILS?
+        //NOW WHEN IT GOES THROUGHT THE FULL LIST OF PATIENTS WHEN IT REACHES THE END IT WONT GIVE ERRORS
     }//GEN-LAST:event_patientPriorityBTNActionPerformed
 
+    private void noShowListBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noShowListBTNActionPerformed
+        // TODO add your handling code here:
+        //DISPLAY THE LAST 5 PATIENTS MARKED AS NO SHOW
+        displayTA.setText("Last 5 No-Shows");
+        for (Patient patient : noShow) {
+            displayTA.append(patient.toString());
+    }
+    }//GEN-LAST:event_noShowListBTNActionPerformed
+
+    private void noShowBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noShowBTNActionPerformed
+        // TODO add your handling code here:
+        //HERE IS WHERE THE PATIENT WOULD BE MARKED AS A NO SHOW PATIENT
+        //??? idk
+        
+    }//GEN-LAST:event_noShowBTNActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -277,6 +319,8 @@ public class bloodGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLBL;
     private javax.swing.JTextField nameTF;
+    private javax.swing.JButton noShowBTN;
+    private javax.swing.JButton noShowListBTN;
     private javax.swing.JButton patientPriorityBTN;
     private javax.swing.JComboBox<String> priorityJBOX;
     private javax.swing.JLabel priorityLBL;

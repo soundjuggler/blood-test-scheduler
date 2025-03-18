@@ -15,7 +15,7 @@ public class BloodTestSchedulerApp {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //run application code - loads the bloodGUI jframe
+        //RUN APPLICATION DISPLAY THE BLOOD GUI WINDOW
         bloodGUI myGUI = new bloodGUI();
         myGUI.setVisible(true);
     }

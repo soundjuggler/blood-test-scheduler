@@ -73,10 +73,11 @@ public class Patient implements Comparable<Patient> {
     
     @Override
     public int compareTo(Patient other) {
-        // Priority order: Urgent > Medium > Low
+        //PRIORITY ORDER ---> LOW -> MEDIUM -> URGENT
         return Integer.compare(getPriorityLevel(other.priority), getPriorityLevel(this.priority));
     }
     
+    //SWITCH STATEMENT FOR WHAT THE CERTAIN PRIORITIES ARE SET AT 
     private int getPriorityLevel(String priority) {
         switch(priority) {
             case "Urgent":
