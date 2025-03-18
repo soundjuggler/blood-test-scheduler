@@ -9,5 +9,11 @@ package bloodtestscheduler;
  * @author dell
  */
 public class PatientPriority {
+//    private PriorityQueue<Patient> patientQueue;
+//    
+//    public PatientPriority() {
+//        //PRIORITY QUEUE
+//        patientQueue = new PriorityQueue<>(new PatientComparator());
+//    }
     
 }

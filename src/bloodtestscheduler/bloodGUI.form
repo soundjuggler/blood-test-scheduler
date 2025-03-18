@@ -26,7 +26,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="301" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="titleLBL" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -35,20 +35,23 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="nameLBL" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ageLBL" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="gpnameLBL" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="priorityLBL" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="priorityJBOX" min="-2" max="-2" attributes="0"/>
+                                  <Component id="gpnameTF" min="-2" pref="153" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="nameTF" max="32767" attributes="0"/>
-                                      <Component id="gpnameTF" pref="153" max="32767" attributes="0"/>
+                                      <Component id="ageTF" alignment="0" pref="153" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
+                          <Component id="displayBTN" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -67,19 +70,26 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="gpnameLBL" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="gpnameTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ageLBL" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ageTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="priorityLBL" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="priorityJBOX" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="gpnameLBL" min="-2" max="-2" attributes="0"/>
+                  <Component id="gpnameTF" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="priorityLBL" min="-2" max="-2" attributes="0"/>
+                  <Component id="priorityJBOX" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="hospitalBTN" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="submitBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="112" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="displayBTN" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="140" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
@@ -110,12 +120,19 @@
         <Property name="text" type="java.lang.String" value="Patient Priority:"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="ageLBL">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Patient Age:"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JTextField" name="nameTF">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTFActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="gpnameTF">
+    </Component>
+    <Component class="javax.swing.JTextField" name="ageTF">
     </Component>
     <Component class="javax.swing.JCheckBox" name="hospitalBTN">
       <Properties>
@@ -155,7 +172,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="displayTA">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -163,5 +180,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="displayBTN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Display Unsorted Full List"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayBTNActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

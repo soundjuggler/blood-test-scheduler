@@ -12,7 +12,7 @@ import java.util.LinkedList;
  */
 public class bloodGUI extends javax.swing.JFrame {
 
-    // LINKEDLIST TO STORE PATIENTS
+    // DATA STRUCTURES
     private LinkedList<Patient> patientList = new LinkedList<>();
     
     /**
@@ -35,13 +35,16 @@ public class bloodGUI extends javax.swing.JFrame {
         nameLBL = new javax.swing.JLabel();
         gpnameLBL = new javax.swing.JLabel();
         priorityLBL = new javax.swing.JLabel();
+        ageLBL = new javax.swing.JLabel();
         nameTF = new javax.swing.JTextField();
         gpnameTF = new javax.swing.JTextField();
+        ageTF = new javax.swing.JTextField();
         hospitalBTN = new javax.swing.JCheckBox();
         submitBTN = new javax.swing.JButton();
         priorityJBOX = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        displayTA = new javax.swing.JTextArea();
+        displayBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +56,8 @@ public class bloodGUI extends javax.swing.JFrame {
         gpnameLBL.setText("Patient's GP Name:");
 
         priorityLBL.setText("Patient Priority:");
+
+        ageLBL.setText("Patient Age:");
 
         nameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,9 +81,16 @@ public class bloodGUI extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        displayTA.setColumns(20);
+        displayTA.setRows(5);
+        jScrollPane1.setViewportView(displayTA);
+
+        displayBTN.setText("Display Unsorted Full List");
+        displayBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,7 +99,7 @@ public class bloodGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titleLBL)
@@ -96,15 +108,18 @@ public class bloodGUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nameLBL)
+                                    .addComponent(ageLBL)
                                     .addComponent(gpnameLBL)
                                     .addComponent(priorityLBL))
                                 .addGap(32, 32, 32)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(priorityJBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(gpnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(nameTF)
-                                        .addComponent(gpnameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(ageTF, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))))
+                            .addComponent(displayBTN))
+                        .addGap(0, 17, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -118,17 +133,23 @@ public class bloodGUI extends javax.swing.JFrame {
                     .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ageLBL)
+                    .addComponent(ageTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gpnameLBL)
                     .addComponent(gpnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(priorityLBL)
                     .addComponent(priorityJBOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addComponent(hospitalBTN)
                 .addGap(18, 18, 18)
                 .addComponent(submitBTN)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(displayBTN)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -150,21 +171,36 @@ public class bloodGUI extends javax.swing.JFrame {
         
         //GETTING INPUT VALUES
         String name = nameTF.getText();
-        String GP = gpnameTF.getText();
+        int age = Integer.parseInt(ageTF.getText()); //HAVE TO PARSE INT TO STRING
+        String gp = gpnameTF.getText();
         String priority = (String) priorityJBOX.getSelectedItem();
         String fromHospital = hospitalBTN.isSelected() ? "Yes" : "No";
         
         //NEED TO CREATE A NEW PATIENT AND ADD THEM TO THE LINKEDLIST
-        Patient patient = new Patient(name, GP, priority, fromHospital);
+        Patient patient = new Patient(name, age, gp, priority, fromHospital);
         patientList.add(patient);
         
         //CLEAR INPUTS
         nameTF.setText("");
+        ageTF.setText("");
         gpnameTF.setText("");
         priorityJBOX.setSelectedIndex(0);
         hospitalBTN.setSelected(false);
         
     }//GEN-LAST:event_submitBTNActionPerformed
+
+    private void displayBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBTNActionPerformed
+        // TODO add your handling code here:
+        //CLEAR  TEXT
+        displayTA.setText("");
+        
+        //TO DISPLAY ALL PATIENTS
+        int i =1;
+        for(Patient patient : patientList) {
+            displayTA.append(i +". " +patient.toString() + "n\n");
+        }
+        
+    }//GEN-LAST:event_displayBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,11 +238,14 @@ public class bloodGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ageLBL;
+    private javax.swing.JTextField ageTF;
+    private javax.swing.JButton displayBTN;
+    private javax.swing.JTextArea displayTA;
     private javax.swing.JLabel gpnameLBL;
     private javax.swing.JTextField gpnameTF;
     private javax.swing.JCheckBox hospitalBTN;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel nameLBL;
     private javax.swing.JTextField nameTF;
     private javax.swing.JComboBox<String> priorityJBOX;

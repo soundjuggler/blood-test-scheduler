@@ -6,19 +6,21 @@ package bloodtestscheduler;
 
 /**
  *
- * @author dell
+ * @author dell 
  */
-//defining Patient data values, name, priority, GP< & WEATHER THERE FROM A HOSPITAL
+//defining Patient data values, name, age, priority, GP< & WEATHER THERE FROM A HOSPITAL
 public class Patient {
     private String name;
+    private int age; 
+    private String gp;
     private String priority;
-    private String GP;
     private String fromHospital;
 
-    public Patient(String name, String priority, String GP, String fromHospital) {
+    public Patient(String name, int age, String gp, String priority, String fromHospital) {
         this.name = name;
+        this.age = age;
+        this.gp = gp;
         this.priority = priority;
-        this.GP = GP;
         this.fromHospital = fromHospital;
     }
 
@@ -30,6 +32,14 @@ public class Patient {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String getPriority() {
         return priority;
     }
@@ -38,12 +48,12 @@ public class Patient {
         this.priority = priority;
     }
 
-    public String getGP() {
-        return GP;
+    public String getgp() {
+        return gp;
     }
 
-    public void setGP(String GP) {
-        this.GP = GP;
+    public void setgp(String GP) {
+        this.gp = GP;
     }
 
     public String getFromHospital() {
@@ -52,6 +62,15 @@ public class Patient {
 
     public void setFromHospital(String fromHospital) {
         this.fromHospital = fromHospital;
+    }
+    
+    @Override
+    public String toString() {
+        return "Name: " +name+
+               ", Age: " +age+
+               ", GP: " +gp+
+               ", Priority: " +priority+
+               ", From Hospital: " +fromHospital;
     }
     
     
